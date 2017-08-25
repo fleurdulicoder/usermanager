@@ -6,6 +6,9 @@ import { connect } from 'react-redux';
 import { addUser } from '../actions';
 import { isInteger } from 'lodash';
 
+// Add Redirect on Submit to the created User
+// https://github.com/reactjs/react-router-redux
+
 const validate = values => {
   const errors = {};
   const fields = ["name", "role", "age", "img", "bio"];
@@ -100,8 +103,6 @@ const mapDispatchToProps = dispatch => ({
     dispatch(addUser(user));
   }
 });
-
-//export default reduxForm({ form: 'adduser'})(connect(null, mapDispatchToProps)(AddUserForm));
 
 export default connect(null, mapDispatchToProps)(reduxForm({
   form: 'AddUserForm',

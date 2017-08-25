@@ -4,6 +4,8 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
+// https://github.com/reactjs/react-router-redux
+//import { routerMiddleware, push } from 'react-router-redux';
 import allReducers from './reducers';
 import thunk from 'redux-thunk';
 import promise from 'redux-promise';
