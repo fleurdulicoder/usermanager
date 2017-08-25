@@ -7,7 +7,7 @@ import { removeUser } from '../actions';
 
 class UserDetail extends Component {
   getUser() {
-    return this.props.users.find((user) => user.get("id") == this.props.match.params.id);
+    return this.props.users.find((user) => user.get("id") === this.props.match.params.id);
   }
 
   render() {

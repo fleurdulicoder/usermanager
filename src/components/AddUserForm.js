@@ -4,6 +4,36 @@ import { TextField } from 'redux-form-material-ui';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { addUser } from '../actions';
+import { isInteger } from 'lodash';
+
+const validate = values => {
+  const errors = {};
+  const fields = ["name", "role", "age", "img", "bio"];
+  fields.forEach(field => {
+    if (!values[field]) {
+        errors[field] = 'This field is required';
+    }
+  });
+
+  if (values.age && !isInteger(Number(values.age))) {
+      errors.age = 'Age is only a number';
+  }
+
+  if (values.img && !/^http(s){0,1}:\/\//.test(values.img)) {
+    errors.img = 'URL is required';
+  }
+  return errors;
+};
+
+const createTextField = ({ input, label, meta: { touched, error }, ...custom  }) =>
+  <TextField
+    hintText={label}
+    floatingLabelText={label}
+    errorText={touched && error}
+    {...input}
+    {...custom}
+  />
+
 
 class AddUserForm extends Component {
   render() {
@@ -12,36 +42,41 @@ class AddUserForm extends Component {
         <form className="user-add-form appear" onSubmit={handleSubmit(this.props.sendUser)}>
           <div>
             <Field name="name"
-              component={TextField}
-              hintText="Enter your first and last names"
+              component={createTextField}
+              hintText="Enter your full name"
+              label="Full Name"
               floatingLabelText="Full Name"
             />
           </div>
           <div>
             <Field name="role"
-              component={TextField}
-              hintText="Profession"
+              component={createTextField}
+              hintText="What is your role"
+              label="Role"
               floatingLabelText="Role"
             />
           </div>
           <div>
             <Field name="age"
-              component={TextField}
+              component={createTextField}
               hintText="Your age"
+              label="Age"
               floatingLabelText="Age"
             />
           </div>
           <div>
             <Field name="img"
-              component={TextField}
+              component={createTextField}
               hintText="URL to your picture"
+              label="Avatar"
               floatingLabelText="Avatar"
             />
           </div>
           <div>
             <Field name="bio"
-              component={TextField}
+              component={createTextField}
               hintText="Write about you"
+              label="Bio"
               floatingLabelText="Bio"
               multiLine={true}
               rows={2}
@@ -68,4 +103,7 @@ const mapDispatchToProps = dispatch => ({
 
 //export default reduxForm({ form: 'adduser'})(connect(null, mapDispatchToProps)(AddUserForm));
 
-export default connect(null, mapDispatchToProps)(reduxForm({ form: 'AddUserForm' })(AddUserForm));
+export default connect(null, mapDispatchToProps)(reduxForm({
+  form: 'AddUserForm',
+  validate
+})(AddUserForm));
