@@ -1,5 +1,5 @@
 {
-  "name": "mondayapp",
+  "name": "usermanager",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -7,15 +7,17 @@
     "immutable": "^3.8.1",
     "lodash": "^4.17.4",
     "material-ui": "^0.19.0",
+    "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-immutable-proptypes": "^2.1.0",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.1.2",
     "react-router-redux": "^4.0.8",
     "react-scripts": "1.0.11",
     "redux": "^3.7.2",
-    "redux-form": "^7.0.3",
+    "redux-form": "^6.8.0",
     "redux-form-material-ui": "^4.2.0",
     "redux-logger": "^3.0.6",
     "redux-promise": "^0.5.3",
@@ -25,10 +27,17 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint src"
   },
   "devDependencies": {
-    "eslint": "^4.5.0",
-    "eslint-plugin-react": "^7.3.0"
+    "eslint": "3.19.0",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-config-prettier": "^2.3.0",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-jsx-a11y": "^5.0.3",
+    "eslint-plugin-prettier": "^2.1.2",
+    "eslint-plugin-react": "^7.1.0",
+    "prettier-eslint-cli": "^4.2.1"
   }
 }

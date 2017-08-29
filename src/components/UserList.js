@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import Paper from 'material-ui/Paper';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
@@ -8,12 +9,18 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router-dom';
 
 class UserList extends Component {
+  static propTypes = { users: ImmutablePropTypes.list.isRequired };
+
   createListItems() {
-    return this.props.users.map((user) =>
-      <Link className="user-menu-link" key={user.get("id")} to={`/user/${user.get("id")}`}>
-        <MenuItem primaryText={user.get("name")} />
+    return this.props.users.map(user => (
+      <Link
+        className="user-menu-link"
+        key={user.get('id')}
+        to={`/user/${user.get('id')}`}
+      >
+        <MenuItem primaryText={user.get('name')} />
       </Link>
-    );
+    ));
   }
 
   render() {
@@ -21,7 +28,11 @@ class UserList extends Component {
       <Paper className="nav">
         <Menu>
           <Link to="/adduser">
-              <RaisedButton className="user-add-button" label="Add User" secondary={true} />
+            <RaisedButton
+              className="user-add-button"
+              label="Add User"
+              secondary
+            />
           </Link>
           <Divider />
           {this.createListItems()}

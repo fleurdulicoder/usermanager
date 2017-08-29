@@ -1,18 +1,8 @@
-import { uniqueId } from 'lodash'; // uniqueId
+import { uniqueId } from 'lodash';
 
-export const addUser = user => {
-  return {
-    type: 'ADD_USER',
-    payload: {
-      id: uniqueId(),
-      ...user
-    }
-  };
-};
+export const addUser = user => ({
+  payload: { id: uniqueId(), ...user },
+  type: 'ADD_USER',
+});
 
-export const removeUser = id => {
-  return {
-    type: 'REMOVE_USER',
-    payload: id
-  }
-};
+export const removeUser = id => ({ payload: id, type: 'REMOVE_USER' });
