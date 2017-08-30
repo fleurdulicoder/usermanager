@@ -10,7 +10,7 @@ import { addUser } from '../actions';
 
 const validate = values => {
   const errors = {};
-  const fields = [ 'name', 'role', 'age', 'img', 'bio' ];
+  const fields = [ 'name', 'role', 'age', 'img', 'bio', 'company' ];
   fields.forEach(field => {
     if (!values[field]) {
       errors[field] = 'This field is required';
@@ -86,11 +86,11 @@ class AddUserForm extends Component {
         </div>
         <div>
           <Field
-            name="role"
+            name="img"
             component={createTextField}
-            hintText="What is your role"
-            label="Role"
-            floatingLabelText="Role"
+            hintText="URL to your picture"
+            label="Avatar"
+            floatingLabelText="Avatar"
           />
         </div>
         <div>
@@ -104,11 +104,20 @@ class AddUserForm extends Component {
         </div>
         <div>
           <Field
-            name="img"
+            name="role"
             component={createTextField}
-            hintText="URL to your picture"
-            label="Avatar"
-            floatingLabelText="Avatar"
+            hintText="What is your role"
+            label="Role"
+            floatingLabelText="Role"
+          />
+        </div>
+        <div>
+          <Field
+            name="company"
+            component={createTextField}
+            hintText="What is company"
+            label="Company"
+            floatingLabelText="Company"
           />
         </div>
         <div>
@@ -145,6 +154,7 @@ const mapStateToProps = state => ({ userId: state.users.last().get('id') });
 
 const mapDispatchToProps = dispatch => ({
   sendUser(user) {
+    console.log('dispatch', user);
     dispatch(addUser(user));
     dispatch(reset('AddUserForm'));
   },

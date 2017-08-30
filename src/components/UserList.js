@@ -10,9 +10,10 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router-dom';
 import { getUsers } from '../actions';
 
+// https://api.myjson.com/bins/d4sf1
 class UserList extends Component {
   componentWillMount() {
-    fetch('https://api.myjson.com/bins/d4sf1')
+    fetch('https://api.myjson.com/bins/11azkt')
       .then(response => response.json())
       .then(users => {
         this.props.loadUsers(users.users);
@@ -64,7 +65,6 @@ UserList.propTypes = {
 
 const mapDispatchToProps = dispatch => ({
   loadUsers: users => {
-    console.log('MAPTODISPATCH >', users);
     dispatch(getUsers(users));
   },
 });

@@ -50,9 +50,7 @@ class UserDetail extends Component {
         <CardHeader
           title={displayUser.get('name')}
           subtitle={
-            `${displayUser.get('role')} @ ${displayUser
-              .get('company')
-              .get('name')}`
+            `${displayUser.get('role')} @ ${displayUser.get('company')}`
           }
           avatar={`${displayUser.get('img')}`}
         />
