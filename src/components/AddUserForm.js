@@ -48,17 +48,14 @@ createTextField.propTypes = {
 createTextField.defaultProps = { label: '' };
 
 class AddUserForm extends Component {
-  static propTypes = {
-    userId: PropTypes.string.isRequired,
-    handleSubmit: PropTypes.func.isRequired,
-    sendUser: PropTypes.func.isRequired,
-  };
+  constructor(props) {
+    super(props);
+    this.state = { redirect: false, userId: 1 };
+  }
 
   // static defaultProps = {
   //   userId: 1,
   // };
-  state = { redirect: false, userId: 1 };
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.userId !== this.props.userId) {
       this.setState({ redirect: true, userId: nextProps.userId });
@@ -137,6 +134,12 @@ class AddUserForm extends Component {
     );
   }
 }
+
+AddUserForm.propTypes = {
+  userId: PropTypes.string.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  sendUser: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = state => ({ userId: state.users.last().get('id') });
 

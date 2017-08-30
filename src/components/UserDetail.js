@@ -3,20 +3,37 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { Card, CardHeader, CardText, CardActions } from 'material-ui/Card';
+import { List, ListItem } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import FlatButton from 'material-ui/FlatButton';
 import { removeUser } from '../actions';
 
 class UserDetail extends Component {
+  // state = { swap: false };
   getUser() {
     return this.props.users.find(
       user => user.get('id') === parseInt(this.props.match.params.id, 10),
     );
   }
 
+  // componentDidMount() {
+  //   console.log('mounted');
+  // }
+  //
+  // shouldComponentUpdate(nextProps) {
+  //   return nextProps.match.params.id !== this.props.match.params.id;
+  // }
+  // componentWillReceiveProps(nextProps) {
+  //   if (this.props.match.params.id !== nextProps.match.params.id) {
+  //     this.setState({ swap: false });
+  //     this.setState({ swap: true });
+  //   }
+  // }
+  //
+  // componentDidUpdate() {
+  // }
   render() {
     const displayUser = this.getUser();
-    console.log(displayUser);
 
     if (!this.props.match.params.id || !displayUser) {
       return (
@@ -27,15 +44,25 @@ class UserDetail extends Component {
       );
     }
 
+    // {`user-card ${this.state.swap ? 'switcher' : ''}`}
     return (
       <Card className="user-card appear">
         <CardHeader
           title={displayUser.get('name')}
-          subtitle={`${displayUser.get('role')} @ OrionHealth`}
+          subtitle={
+            `${displayUser.get('role')} @ ${displayUser
+              .get('company')
+              .get('name')}`
+          }
           avatar={`${displayUser.get('img')}`}
         />
         <CardText>
-          {displayUser.get('bio')}
+          <List>
+            <ListItem primaryText={displayUser.get('phone')} />
+            <ListItem primaryText={displayUser.get('email')} />
+            <ListItem primaryText={displayUser.get('website')} />
+            <ListItem primaryText={displayUser.get('bio')} />
+          </List>
         </CardText>
         <Divider />
         <CardActions>
@@ -57,7 +84,6 @@ UserDetail.propTypes = {
   deleteUser: PropTypes.func.isRequired,
 };
 
-// user: state.activeUser
 const mapStateToProps = state => ({ users: state.users });
 
 const mapDispatchToProps = dispatch => ({

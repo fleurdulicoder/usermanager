@@ -8,6 +8,12 @@
   to { opacity: 0; transform: translateY(45px); }
 }
 
+@keyframes switchcard {
+  0  { opacity: 1; transform: translateY(0); }
+  50% { opacity: 0; transform: translateY(45px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
 .appear {
   animation-name: floatup;
   animation-timing-function: cubic-bezier(.45,.69,.36,.94);
@@ -18,6 +24,12 @@
   animation-name: floatoff;
   animation-timing-function: cubic-bezier(.45,.69,.36,.94);
   animation-duration: 250ms;
+}
+
+.switcher {
+  animation-name: switchcard;
+  animation-timing-function: cubic-bezier(.45,.69,.36,.94);
+  animation-duration: 240ms;
 }
 
 body {
@@ -74,4 +86,8 @@ body {
 
 .user-menu-link {
   text-decoration: none;
+}
+
+.user-card {
+  line-height: 21px;
 }
