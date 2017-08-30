@@ -8,20 +8,15 @@ import FlatButton from 'material-ui/FlatButton';
 import { removeUser } from '../actions';
 
 class UserDetail extends Component {
-  static propTypes = {
-    users: ImmutablePropTypes.list.isRequired,
-    match: PropTypes.object.isRequired,
-    deleteUser: PropTypes.func.isRequired,
-  };
-
   getUser() {
     return this.props.users.find(
-      user => user.get('id') === this.props.match.params.id,
+      user => user.get('id') === parseInt(this.props.match.params.id, 10),
     );
   }
 
   render() {
     const displayUser = this.getUser();
+    console.log(displayUser);
 
     if (!this.props.match.params.id || !displayUser) {
       return (
@@ -55,6 +50,12 @@ class UserDetail extends Component {
     );
   }
 }
+
+UserDetail.propTypes = {
+  users: ImmutablePropTypes.list.isRequired,
+  match: PropTypes.object.isRequired,
+  deleteUser: PropTypes.func.isRequired,
+};
 
 // user: state.activeUser
 const mapStateToProps = state => ({ users: state.users });
