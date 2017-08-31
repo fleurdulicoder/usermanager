@@ -15,7 +15,7 @@ class Main extends Component {
   defaultScreen() {
     return (
       <Card className="user-card appear">
-        <CardHeader title="WELCOME" />
+        <CardHeader title="Welcome" />
         <CardText>Load users from the left hand-side panel</CardText>
       </Card>
     );
@@ -24,7 +24,7 @@ class Main extends Component {
   render() {
     return (
       <div className="app">
-        <AppBar title="USER MANAGER" className="appbar" />
+        <AppBar title="User Loader" className="appbar" />
         <UserList />
         <div className="main">
           <Route exact path="/" component={this.defaultScreen} />
