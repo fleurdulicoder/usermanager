@@ -12,7 +12,7 @@ class UserDetail extends Component {
   // state = { swap: false };
   getUser() {
     return this.props.users.find(
-      user => user.get('id') == this.props.match.params.id,
+      user => user.get('id').toString() === this.props.match.params.id,
     );
   }
 
@@ -45,6 +45,7 @@ class UserDetail extends Component {
     }
 
     // {`user-card ${this.state.swap ? 'switcher' : ''}`}
+    // console.log('display user >>', typeof displayUser.get('id'));
     return (
       <Card className="user-card appear">
         <CardHeader

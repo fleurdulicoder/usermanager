@@ -10,7 +10,7 @@ import { addUser } from '../actions';
 
 const validate = values => {
   const errors = {};
-  const fields = [ 'name', 'role', 'age', 'img', 'bio', 'company' ];
+  const fields = [ 'name', 'company', 'email', 'img', 'bio', 'age' ];
   fields.forEach(field => {
     if (!values[field]) {
       errors[field] = 'This field is required';
@@ -21,6 +21,19 @@ const validate = values => {
     errors.age = 'Age is only a number';
   }
 
+  if (
+    values.email &&
+      !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(values.email)
+  ) {
+    errors.email = 'Your email is invalid';
+  }
+
+  // if (values.phone && /^[0-9]{3}-[0-9]{3}-[0-9]{4}/.test(values.phone)) {
+  //   errors.phone = 'Format as 222-333-4444';
+  // }
+  // if (values.website && !/^http(s){0,1}:\/\//.test(values.website)) {
+  //   errors.website = 'Website url is wrong';
+  // }
   if (values.img && !/^http(s){0,1}:\/\//.test(values.img)) {
     errors.img = 'URL is required';
   }
@@ -50,7 +63,7 @@ createTextField.defaultProps = { label: '' };
 class AddUserForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { redirect: false, userId: 1 };
+    this.state = { redirect: false, userId: '1' };
   }
 
   // static defaultProps = {
@@ -95,6 +108,15 @@ class AddUserForm extends Component {
         </div>
         <div>
           <Field
+            name="company"
+            component={createTextField}
+            hintText="What is company"
+            label="Company"
+            floatingLabelText="Company"
+          />
+        </div>
+        <div>
+          <Field
             name="age"
             component={createTextField}
             hintText="Your age"
@@ -113,11 +135,20 @@ class AddUserForm extends Component {
         </div>
         <div>
           <Field
-            name="company"
+            name="email"
             component={createTextField}
-            hintText="What is company"
-            label="Company"
-            floatingLabelText="Company"
+            hintText="Enter your email"
+            label="Email"
+            floatingLabelText="Email"
+          />
+        </div>
+        <div>
+          <Field
+            name="phone"
+            component={createTextField}
+            hintText="Enter your phone"
+            label="Phone"
+            floatingLabelText="Phone"
           />
         </div>
         <div>
@@ -130,6 +161,15 @@ class AddUserForm extends Component {
             multiLine
             rows={2}
             rowsMax={4}
+          />
+        </div>
+        <div>
+          <Field
+            name="website"
+            component={createTextField}
+            hintText="Personal web space"
+            label="Website"
+            floatingLabelText="Website"
           />
         </div>
         <div>
@@ -150,11 +190,12 @@ AddUserForm.propTypes = {
   sendUser: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({ userId: state.users.last().get('id') });
+const mapStateToProps = state => ({
+  userId: state.users.last().get('id').toString(),
+});
 
 const mapDispatchToProps = dispatch => ({
   sendUser(user) {
-    console.log('dispatch', user);
     dispatch(addUser(user));
     dispatch(reset('AddUserForm'));
   },

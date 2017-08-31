@@ -1,7 +1,8 @@
 import { uniqueId } from 'lodash';
 
+// store.get('users').length + 1
 export const addUser = user => ({
-  payload: { id: uniqueId(), ...user },
+  payload: { id: uniqueId() + 10, ...user },
   type: 'ADD_USER',
 });
 
