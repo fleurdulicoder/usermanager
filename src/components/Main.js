@@ -16,7 +16,9 @@ class Main extends Component {
     return (
       <Card className="user-card appear">
         <CardHeader title="Welcome" />
-        <CardText>Load users from the left hand-side panel</CardText>
+        <CardText>
+          Click on links on the left hand side to load user details
+        </CardText>
       </Card>
     );
   }
