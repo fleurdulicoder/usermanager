@@ -9,6 +9,10 @@ const data = {
       img: '/img/users/user-1.png',
       name: 'Sage Hewett',
       role: 'Development',
+      company: 'Orion Health',
+      email: 'shewett@orionhealth.com',
+      website: 'google.com',
+      phone: '480-221-2121',
     },
     {
       age: 22,
@@ -17,6 +21,10 @@ const data = {
       img: '/img/users/user-2.png',
       name: 'Dan Miller',
       role: 'Marketing',
+      company: 'Orion Health',
+      email: 'dmiller@orionhealth.com',
+      website: 'google.com',
+      phone: '480-444-2132',
     },
     {
       age: 44,
@@ -25,6 +33,10 @@ const data = {
       img: '/img/users/user-3.png',
       name: 'Tony Williamson',
       role: 'Management',
+      company: 'Orion Health',
+      email: 'twilliamson@orionhealth.com',
+      website: 'google.com',
+      phone: '480-555-3553',
     },
     {
       age: 100,
@@ -33,6 +45,10 @@ const data = {
       img: 'https://maxcdn.icons8.com/Share/icon/color/Gaming//pokecoin1600.png',
       name: 'Kate Winsey',
       role: 'HR',
+      company: 'Orion Health',
+      email: 'kwinsley@orionhealth.com',
+      website: 'google.com',
+      phone: '480-666-7777',
     },
   ],
 };

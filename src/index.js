@@ -11,6 +11,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import allReducers from './reducers';
 import Main from './components/Main';
 import './css/index.css';
+import { getUsers } from './actions';
 
 const finalCreateStore = compose(
   applyMiddleware(thunk, promise, logger),
@@ -18,6 +19,13 @@ const finalCreateStore = compose(
 )(createStore);
 
 const store = finalCreateStore(allReducers, {});
+
+fetch('https://api.myjson.com/bins/11azkt')
+  .then(response => response.json())
+  .then(users => {
+    store.dispatch(getUsers(users.users));
+  })
+  .catch(error => new Error(error));
 
 render(
   <MuiThemeProvider>

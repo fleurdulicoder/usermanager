@@ -12,7 +12,7 @@ class UserDetail extends Component {
   // state = { swap: false };
   getUser() {
     return this.props.users.find(
-      user => user.get('id') === parseInt(this.props.match.params.id, 10),
+      user => user.get('id') == this.props.match.params.id,
     );
   }
 
